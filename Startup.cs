@@ -1,8 +1,12 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using AspNetCoreIdentityVS19.Areas.Identity.Data;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -31,6 +35,13 @@ namespace AspNetCoreIdentityVS19
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddDbContext<AspNetCoreIdentityVS19Context>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("AspNetCoreIdentityVS19ContextConnection")));
+
+            services.AddDefaultIdentity<IdentityUser>()
+                .AddDefaultUI(UIFramework.Bootstrap4)
+                .AddEntityFrameworkStores<AspNetCoreIdentityVS19Context>();
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -52,6 +63,8 @@ namespace AspNetCoreIdentityVS19
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
