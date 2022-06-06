@@ -17,8 +17,14 @@ namespace AspNetCoreIdentityVS19.Controllers
         {
             return View();
         }
-        
+
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Admin")] //o usuário tem que estar autenticado e autorizado a acessar a página
+        public IActionResult Secret()
         {
             return View();
         }

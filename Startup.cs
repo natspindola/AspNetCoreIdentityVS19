@@ -39,6 +39,7 @@ namespace AspNetCoreIdentityVS19
                 options.UseSqlServer(Configuration.GetConnectionString("AspNetCoreIdentityVS19ContextConnection")));
 
             services.AddDefaultIdentity<IdentityUser>()
+                .AddRoles<IdentityRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<AspNetCoreIdentityVS19Context>();
 
