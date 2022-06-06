@@ -1,4 +1,5 @@
 ﻿using AspNetCoreIdentityVS19.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,13 +9,15 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreIdentityVS19.Controllers
 {
+    [Authorize] //apenas quem tá autenticado pode acessar
     public class HomeController : Controller
     {
+        [AllowAnonymous] //todos podem acessar
         public IActionResult Index()
         {
             return View();
         }
-
+        
         public IActionResult Privacy()
         {
             return View();
