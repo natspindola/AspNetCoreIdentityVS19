@@ -29,6 +29,12 @@ namespace AspNetCoreIdentityVS19.Controllers
             return View();
         }
 
+        [Authorize(Policy = "PodeExcluir")] //o usuário tem acesso apenas se tiver a permissão "PodeExcluir" vinculado no perfil
+        public IActionResult SecretClaim()
+        {
+            return View("Secret");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
