@@ -41,7 +41,7 @@ namespace AspNetCoreIdentityVS19.Controllers
             return View("Secret");
         }
 
-        [ClaimAuthorize("Home", "Secret")] 
+        [ClaimAuthorize("Produtos", "Ler")] 
         public IActionResult ClaimCustom()
         {
             return View("Secret");

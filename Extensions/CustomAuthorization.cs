@@ -15,31 +15,32 @@ namespace AspNetCoreIdentityVS19.Extensions
         {
             return context.User.Identity.IsAuthenticated && context.User.Claims.Any(c => c.Type == claimName && c.Value.Contains(claimValue));
         }
+    }
 
-        public class ClaimsAuthorizeAttribute : TypeFilterAttribute
+    public class ClaimsAuthorizeAttribute : TypeFilterAttribute
+    {
+        public ClaimsAuthorizeAttribute(string claimName, string claimValue) : base(type:typeof(RequisitoClaimFilter))
         {
-            public ClaimsAuthorizeAttribute(string claimName, string claimValue) : base(type:typeof(RequisitoClaimFilter))
-            {
-                Arguments = new object[] { new Claim(type: claimName, claimValue) };
-            }
+            Arguments = new object[] { new Claim(type: claimName, claimValue) };
+        }
+    }
+
+    public class RequisitoClaimFilter : IAuthorizationFilter
+    {
+        private readonly Claim _claim;
+
+        public RequisitoClaimFilter(Claim claim)
+        {
+            _claim = claim;
         }
 
-        public class RequisitoClaimFilter : IAuthorizationFilter
+        public void OnAuthorization(AuthorizationFilterContext context)
         {
-            private readonly Claim _claim;
-
-            public RequisitoClaimFilter(Claim claim)
+            if (!CustomAuthorization.ValidarClaimsUsuario(context.HttpContext, claimName: _claim.Type, _claim.Value))
             {
-                _claim = claim;
-            }
-
-            public void OnAuthorization(AuthorizationFilterContext context)
-            {
-                if(!ValidarClaimsUsuario(context.HttpContext, claimName:_claim.Type, _claim.Value))
-                {
-                    context.Result = new ForbidResult();
-                }
+                context.Result = new ForbidResult();
             }
         }
     }
 }
+
