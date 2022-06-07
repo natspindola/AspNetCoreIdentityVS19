@@ -1,5 +1,6 @@
 ﻿using AspNetCoreIdentityVS19.Areas.Identity.Data;
 using AspNetCoreIdentityVS19.Extensions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -51,6 +52,8 @@ namespace AspNetCoreIdentityVS19
                 options.AddPolicy(name: "PodeLer", configurePolicy: policy => policy.Requirements.Add(new PermissaoNecessaria(permissao: "PodeLer")));
                 options.AddPolicy(name: "PodeEscrever", configurePolicy: policy => policy.Requirements.Add(new PermissaoNecessaria(permissao: "PodeEscrever")));
             });
+
+            services.AddSingleton<IAuthorizationHandler, PermissaoNecessariaHendler>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
