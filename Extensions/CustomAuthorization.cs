@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,14 @@ namespace AspNetCoreIdentityVS19.Extensions
             return context.User.Identity.IsAuthenticated && context.User.Claims.Any(c => c.Type == claimName && c.Value.Contains(claimValue));
         }
 
+        public class ClaimsAuthorizeAttribute : TypeFilterAttribute
+        {
+            public ClaimsAuthorizeAttribute(string claimName, string claimValue) : base(type:typeof(RequisitoClaimFilter))
+            {
+                Arguments = new object[] { new Claim(type: claimName, claimValue) };
+            }
+        }
+
         public class RequisitoClaimFilter : IAuthorizationFilter
         {
             private readonly Claim _claim;
@@ -26,7 +35,10 @@ namespace AspNetCoreIdentityVS19.Extensions
 
             public void OnAuthorization(AuthorizationFilterContext context)
             {
-                throw new NotImplementedException();
+                if(!ValidarClaimsUsuario(context.HttpContext, claimName:_claim.Type, _claim.Value))
+                {
+                    context.Result = new ForbidResult();
+                }
             }
         }
     }
