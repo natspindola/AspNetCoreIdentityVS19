@@ -26,28 +26,8 @@ namespace AspNetCoreIdentityVS19
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
-
-            services.AddDbContext<AspNetCoreIdentityVS19Context>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("AspNetCoreIdentityVS19ContextConnection")));
-
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddRoles<IdentityRole>()
-                .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddEntityFrameworkStores<AspNetCoreIdentityVS19Context>();
-
-            services.AddAuthorization(options =>
-            {
-                options.AddPolicy(name: "PodeExcluir", configurePolicy: policy => policy.RequireClaim("PodeExcluir"));
-
-                options.AddPolicy(name: "PodeLer", configurePolicy: policy => policy.Requirements.Add(new PermissaoNecessaria(permissao: "PodeLer")));
-                options.AddPolicy(name: "PodeEscrever", configurePolicy: policy => policy.Requirements.Add(new PermissaoNecessaria(permissao: "PodeEscrever")));
-            });
-
+            services.AddIdentityConfig(Configuration);
+            services.AddAuthorizationConfig();
             services.ResolveDependencies();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
