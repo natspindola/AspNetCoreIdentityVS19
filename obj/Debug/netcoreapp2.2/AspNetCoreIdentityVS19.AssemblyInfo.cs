@@ -11,6 +11,7 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("a16b892c-ac45-4c7e-9d2f-f98645e2dc55")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("AspNetCoreIdentityVS19")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
