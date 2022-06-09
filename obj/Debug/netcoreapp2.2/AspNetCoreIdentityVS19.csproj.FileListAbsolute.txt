@@ -44,3 +44,4 @@ C:\dev\Desenvolvedor.IO\AspNetCoreIdentityVS19\obj\Debug\netcoreapp2.2\Razor\Are
 C:\dev\Desenvolvedor.IO\AspNetCoreIdentityVS19\obj\Debug\netcoreapp2.2\Razor\Views\Home\Secret.cshtml.g.cs
 C:\dev\Desenvolvedor.IO\AspNetCoreIdentityVS19\bin\Debug\netcoreapp2.2\appsettings.Production.json
 C:\dev\Desenvolvedor.IO\AspNetCoreIdentityVS19\bin\Debug\netcoreapp2.2\appsettings.Staging.json
+C:\dev\Desenvolvedor.IO\AspNetCoreIdentityVS19\obj\Debug\netcoreapp2.2\Razor\Views\Teste\Index.cshtml.g.cs
