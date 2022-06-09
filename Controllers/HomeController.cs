@@ -75,7 +75,7 @@ namespace AspNetCoreIdentityVS19.Controllers
                 return StatusCode(404);
             }
 
-            return View("Error");
+            return View("Error", modelErro);
         }
     }
 }

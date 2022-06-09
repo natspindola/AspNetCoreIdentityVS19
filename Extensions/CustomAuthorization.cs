@@ -44,7 +44,7 @@ namespace AspNetCoreIdentityVS19.Extensions
 
             if (!CustomAuthorization.ValidarClaimsUsuario(context.HttpContext, claimName: _claim.Type, _claim.Value))
             {
-                context.Result = new ForbidResult();
+                context.Result = new StatusCodeResult(statusCode: 403);
             }
         }
     }
