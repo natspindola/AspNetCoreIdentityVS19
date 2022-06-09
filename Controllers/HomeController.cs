@@ -30,12 +30,23 @@ namespace AspNetCoreIdentityVS19.Controllers
 
         public IActionResult Privacy()
         {
+            throw new Exception(message: "Erro");
             return View();
         }
 
         [Authorize(Roles = "Admin")] //o usuário tem que estar autenticado e autorizado a acessar a página
         public IActionResult Secret()
         {
+            try
+            {
+                throw new Exception(message: "Algo horrível aconteceu!");
+            }
+            catch (Exception e)
+            {
+                _logger.Error(e);
+                throw;
+            }
+
             return View();
         }
 
