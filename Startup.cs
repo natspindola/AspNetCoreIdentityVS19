@@ -1,6 +1,7 @@
 ﻿using AspNetCoreIdentityVS19.Areas.Identity.Data;
 using AspNetCoreIdentityVS19.Config;
 using AspNetCoreIdentityVS19.Extensions;
+using KissLog.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -56,6 +57,8 @@ namespace AspNetCoreIdentityVS19
                 app.UseStatusCodePagesWithRedirects("/erro/{0}");
                 app.UseHsts();
             }
+
+            app.UseKissLogMiddleware();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
