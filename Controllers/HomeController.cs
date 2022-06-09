@@ -1,4 +1,5 @@
 ﻿using AspNetCoreIdentityVS19.Models;
+using KissLog;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,9 +13,18 @@ namespace AspNetCoreIdentityVS19.Controllers
     [Authorize] //apenas quem tá autenticado pode acessar
     public class HomeController : Controller
     {
+        private readonly ILogger _logger;
+
+        public HomeController(ILogger logger)
+        {
+            _logger = logger;
+        }
+
         [AllowAnonymous] //todos podem acessar
         public IActionResult Index()
         {
+            _logger.Trace(message: "Usuario acessou a home!");
+
             return View();
         }
 

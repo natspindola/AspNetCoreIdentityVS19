@@ -1,6 +1,8 @@
 ﻿using AspNetCoreIdentityVS19.Areas.Identity.Data;
 using AspNetCoreIdentityVS19.Config;
 using AspNetCoreIdentityVS19.Extensions;
+using KissLog;
+using KissLog.Apis.v1.Listeners;
 using KissLog.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -72,6 +74,8 @@ namespace AspNetCoreIdentityVS19
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            new LogConfig().RegisterKissLogListeners(Configuration);
         }
     }
 }
