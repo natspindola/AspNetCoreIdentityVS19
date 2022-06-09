@@ -8,6 +8,7 @@
 
 
   <ItemGroup>
+    <PackageReference Include="KissLog.AspNetCore" Version="2.1.2" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.2.0" />

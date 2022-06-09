@@ -43,6 +43,10 @@
         "netcoreapp2.2": {
           "targetAlias": "netcoreapp2.2",
           "dependencies": {
+            "KissLog.AspNetCore": {
+              "target": "Package",
+              "version": "[2.1.2, )"
+            },
             "Microsoft.AspNetCore": {
               "target": "Package",
               "version": "[2.2.0, )"
