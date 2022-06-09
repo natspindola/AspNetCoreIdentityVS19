@@ -14,6 +14,8 @@ namespace AspNetCoreIdentityVS19.Config
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<ILogger>((context) => Logger.Factory.Get());
+
+            services.AddScoped<AuditoriaFilter>();
             
             return services;
         }
